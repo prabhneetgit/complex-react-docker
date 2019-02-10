@@ -13,3 +13,10 @@ after_success:
   - docker build -t prabhneetdocker/multi-nginx ./nginx
   - docker build -t prabhneetdocker/multi-server ./server
   - docker build -t prabhneetdocker/multi-worker ./worker
+   # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push prabhneetdocker/multi-client
+  - docker push prabhneetdocker/multi-nginx
+  - docker push prabhneetdocker/multi-server
+  - docker push prabhneetdocker/multi-worker
